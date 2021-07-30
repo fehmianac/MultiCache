@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
 using MultiCache.Abstractions;
+using MultiCache.Memory;
 using MultiCache.Redis;
 
 namespace MultiCache
@@ -11,9 +12,9 @@ namespace MultiCache
     public class MultiCacheManager : IMultiCacheManager
     {
         private readonly IRedisClient _redisClient;
-        private readonly IMemoryCache _memoryCache;
+        private readonly IMemoryClient _memoryCache;
         
-        public MultiCacheManager(IRedisClient redisClient, IMemoryCache memoryCache)
+        public MultiCacheManager(IRedisClient redisClient, IMemoryClient memoryCache)
         {
             _redisClient = redisClient;
             _memoryCache = memoryCache;

@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{BAAED0D8
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCache", "src\MultiCache\MultiCache.csproj", "{F3384CEB-C664-42DC-857A-A1A8847C7329}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCache.Tests", "tests\MultiCache.Tests\MultiCache.Tests.csproj", "{07B72A1B-11FB-4765-851E-5E83AA4BDECA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,16 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F3384CEB-C664-42DC-857A-A1A8847C7329} = {509ABABB-B096-491F-84E1-A7162925A500}
+		{07B72A1B-11FB-4765-851E-5E83AA4BDECA} = {BAAED0D8-F953-4347-B3D6-09564092C26C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F3384CEB-C664-42DC-857A-A1A8847C7329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F3384CEB-C664-42DC-857A-A1A8847C7329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3384CEB-C664-42DC-857A-A1A8847C7329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3384CEB-C664-42DC-857A-A1A8847C7329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07B72A1B-11FB-4765-851E-5E83AA4BDECA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07B72A1B-11FB-4765-851E-5E83AA4BDECA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07B72A1B-11FB-4765-851E-5E83AA4BDECA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07B72A1B-11FB-4765-851E-5E83AA4BDECA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
