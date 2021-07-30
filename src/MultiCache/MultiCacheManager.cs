@@ -49,8 +49,10 @@ namespace MultiCache
             return response;
         }
 
-        public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null, CancellationToken token = default)
+        public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            
             if (expiry.HasValue)
             {
                 _memoryCache.Set(key, value, expiry.Value);
@@ -60,11 +62,13 @@ namespace MultiCache
                 _memoryCache.Set(key, value);
             }
 
-            await _redisClient.SetAsync(key, JsonSerializer.SerializeToUtf8Bytes(value), expiry, token).ConfigureAwait(false);
+            await _redisClient.SetAsync(key, JsonSerializer.SerializeToUtf8Bytes(value), expiry, cancellationToken).ConfigureAwait(false);
         }
 
         public async Task<T> GetOrCreateAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            
             var cacheResult = await GetAsync<T>(key, cancellationToken);
             if (cacheResult != null)
                 return cacheResult;
