@@ -1,15 +1,14 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
-using MultiCache.Redis;
 
-namespace MultiCache
+namespace MultiCache.Redis
 {
-    internal class CacheInvalidationService : BackgroundService
+    internal class RedisCacheInvalidationService : BackgroundService
     {
         private readonly IRedisClient _redisClient;
 
-        public CacheInvalidationService(IRedisClient redisClient)
+        public RedisCacheInvalidationService(IRedisClient redisClient)
         {
             _redisClient = redisClient;
         }

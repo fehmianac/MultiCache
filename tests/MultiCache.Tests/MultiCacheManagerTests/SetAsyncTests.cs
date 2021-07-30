@@ -33,7 +33,7 @@ namespace MultiCache.Tests.MultiCacheManagerTests
         {
             var cancellationTokenSource = new CancellationTokenSource();
             cancellationTokenSource.Cancel();
-            var multiCacheManager = _autoMock.Create<MultiCacheManager>();
+            var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
             await Assert.ThrowsAnyAsync<OperationCanceledException>(() => multiCacheManager.GetAsync<string>(cacheKey, cancellationTokenSource.Token));
         }
 
@@ -44,7 +44,7 @@ namespace MultiCache.Tests.MultiCacheManagerTests
             _memoryClientMock.Setup(q => q.Set(cacheKey, value)).Returns(value);
             _redisClientMock.Setup(q => q.SetAsync(cacheKey, It.IsAny<byte[]>(), null, It.IsAny<CancellationToken>())).Returns(Task.CompletedTask);
 
-            var multiCacheManager = _autoMock.Create<MultiCacheManager>();
+            var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
             await multiCacheManager.SetAsync(cacheKey, value);
 
             _memoryClientMock.Verify(q => q.Set(cacheKey, value), Times.Once);
@@ -58,7 +58,7 @@ namespace MultiCache.Tests.MultiCacheManagerTests
             _memoryClientMock.Setup(q => q.Set(cacheKey, value, timeSpan)).Returns(value);
             _redisClientMock.Setup(q => q.SetAsync(cacheKey, It.IsAny<byte[]>(), timeSpan, It.IsAny<CancellationToken>())).Returns(Task.CompletedTask);
 
-            var multiCacheManager = _autoMock.Create<MultiCacheManager>();
+            var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
             await multiCacheManager.SetAsync(cacheKey, value, timeSpan);
 
             _memoryClientMock.Verify(q => q.Set(cacheKey, value, timeSpan), Times.Once);

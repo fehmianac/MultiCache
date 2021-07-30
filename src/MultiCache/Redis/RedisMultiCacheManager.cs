@@ -2,19 +2,17 @@ using System;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Caching.Memory;
 using MultiCache.Abstractions;
 using MultiCache.Memory;
-using MultiCache.Redis;
 
-namespace MultiCache
+namespace MultiCache.Redis
 {
-    public class MultiCacheManager : IMultiCacheManager
+    public class RedisMultiCacheManager : IMultiCacheManager
     {
         private readonly IRedisClient _redisClient;
         private readonly IMemoryClient _memoryCache;
         
-        public MultiCacheManager(IRedisClient redisClient, IMemoryClient memoryCache)
+        public RedisMultiCacheManager(IRedisClient redisClient, IMemoryClient memoryCache)
         {
             _redisClient = redisClient;
             _memoryCache = memoryCache;
