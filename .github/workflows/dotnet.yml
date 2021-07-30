@@ -1,4 +1,4 @@
-name: .NET
+name: Nuget Package for nuget.org
 
 on:
   push:
@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Build
-      run: dotnet build --configuration Release .src/MultiCache/MultiCache.csproj
+      run: dotnet build --configuration Release ./src/MultiCache/MultiCache.csproj
     - name: Package
-      run: dotnet pack --configuration Release .src/MultiCache/MultiCache.csproj
+      run: dotnet pack --configuration Release ./src/MultiCache/MultiCache.csproj
     - name: Upload
       run: dotnet nuget push ./src/MultiCache/bin/Release/*.nupkg --api-key ${{ secrets.NugetApiKey }} --source https://api.nuget.org/v3/index.json
