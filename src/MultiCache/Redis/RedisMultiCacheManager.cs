@@ -11,7 +11,7 @@ namespace MultiCache.Redis
     {
         private readonly IRedisClient _redisClient;
         private readonly IMemoryClient _memoryCache;
-        
+
         public RedisMultiCacheManager(IRedisClient redisClient, IMemoryClient memoryCache)
         {
             _redisClient = redisClient;
@@ -50,7 +50,7 @@ namespace MultiCache.Redis
         public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            
+
             if (expiry.HasValue)
             {
                 _memoryCache.Set(key, value, expiry.Value);
@@ -66,7 +66,7 @@ namespace MultiCache.Redis
         public async Task<T> GetOrCreateAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            
+
             var cacheResult = await GetAsync<T>(key, cancellationToken);
             if (cacheResult != null)
                 return cacheResult;
@@ -80,6 +80,11 @@ namespace MultiCache.Redis
 
             await SetAsync(key, result, expiry, cancellationToken);
             return result;
+        }
+
+        public async Task RemoveAsync(string key, CancellationToken cancellationToken)
+        {
+            await _redisClient.RemoveAsync(key, cancellationToken);
         }
     }
 }
