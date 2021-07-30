@@ -17,11 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
-    - name: Restore dependencies
-      run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release .src/MultiCache/MultiCache.csproj
     - name: Package
-      run: dotnet pack --configuration Release --no-build
+      run: dotnet pack --configuration Release .src/MultiCache/MultiCache.csproj
     - name: Upload
       run: dotnet nuget push ./src/MultiCache/bin/Release/*.nupkg --api-key ${{ secrets.NugetApiKey }} --source https://api.nuget.org/v3/index.json
