@@ -1,7 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+        <Title>MultiCache</Title>
+        <Copyright>Fehmi Anaç</Copyright>
+        <PackageProjectUrl>https://github.com/fehmianac/multi-cache</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/fehmianac/multi-cache</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageVersion>0.0.1</PackageVersion>
+        <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
     </PropertyGroup>
 
     <ItemGroup>
