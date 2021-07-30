@@ -11,6 +11,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{EC0DA659-51EC-4BE3-86EE-CC0B88AD72D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCache.Demo.Net50", "demo\MultiCache.Demo.Net50\MultiCache.Demo.Net50.csproj", "{6E52F0C2-A3C0-417D-96D3-1EF5C8B517F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
