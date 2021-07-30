@@ -10,9 +10,9 @@
         <NeutralLanguage>en-US</NeutralLanguage>
         <PackageId>MultiCache</PackageId>
         <PackageTags>Caching, Redis, StackExcange, Performance</PackageTags>
-        <PackageIcon>packageIcon.png</PackageIcon>
+<!--        <PackageIcon>packageIcon.png</PackageIcon>-->
 <!--        <PackageIconFullPath>$(MSBuildThisFileDirectory)packageIcon.png</PackageIconFullPath>-->
-<!--        <PackageProjectUrl>https://github.com/fehmianac/multi-cache</PackageProjectUrl>-->
+        <PackageProjectUrl>https://github.com/fehmianac/multi-cache</PackageProjectUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/fehmianac/multi-cache</RepositoryUrl>
