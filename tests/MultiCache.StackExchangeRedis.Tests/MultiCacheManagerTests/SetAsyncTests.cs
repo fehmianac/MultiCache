@@ -34,7 +34,7 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             var cancellationTokenSource = new CancellationTokenSource();
             cancellationTokenSource.Cancel();
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => multiCacheManager.GetAsync<string>(cacheKey, cancellationTokenSource.Token));
+            await Assert.ThrowsAnyAsync<OperationCanceledException>(() => multiCacheManager.SetAsync(cacheKey, Guid.NewGuid(), TimeSpan.Zero, cancellationTokenSource.Token));
         }
 
         [AutoData, Theory]
@@ -50,7 +50,7 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             _memoryClientMock.Verify(q => q.Set(cacheKey, value), Times.Once);
             _redisClientMock.Verify(q => q.SetAsync(cacheKey, byteResponse, null, It.IsAny<CancellationToken>()), Times.Once);
         }
-        
+
         [AutoData, Theory]
         public async Task Should_Set_Cache_With_TTL(string cacheKey, string value, TimeSpan timeSpan)
         {
