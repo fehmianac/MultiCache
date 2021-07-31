@@ -84,6 +84,8 @@ namespace MultiCache.StackExchangeRedis.Redis
 
         public async Task RemoveAsync(string key, CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
+            
             await _redisClient.RemoveAsync(key, cancellationToken);
         }
     }
