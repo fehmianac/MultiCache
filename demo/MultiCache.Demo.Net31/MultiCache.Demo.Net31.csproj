@@ -5,11 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="MultiCache" Version="0.0.3" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Controllers" />
     </ItemGroup>
 
 </Project>

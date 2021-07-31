@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MultiCache.Demo.Net31.Utils;
+using MultiCache.Extensions;
 
 namespace MultiCache.Demo.Net31
 {
@@ -28,6 +30,14 @@ namespace MultiCache.Demo.Net31
         {
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "MultiCache.Demo.Net31", Version = "v1"}); });
+            
+            var redisSettings =  Configuration.GetSection("RedisSettings").Get<RedisSettings>();
+            
+            services.AddRedisMultiCacheServices(options =>
+            {
+                options.Configuration = redisSettings.Host;
+                options.InstanceName = "multi-cache-demo";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  MultiCacheDemoNet50:
+    image: multi-cache-demo-net31
+    container_name: multi-cache-demo-net31
+    links:
+      - MultiCacheDemoNet31Redis
+    build:
+      context: .
+    ports:
+      - "0.0.0.0:5000:80"
+    networks:
+      - multi-cache-demo-net31-network
+    environment:
+      - API_URL=Api:5000
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RedisSettings__Host=multi-cache-demo-net31-redis:6379
+
+  MultiCacheDemoNet31Redis:
+    image: redis
+    container_name: multi-cache-demo-net31-redis
+    expose:
+      - 6379
+    networks:
+      - multi-cache-demo-net31-network
+
+networks:
+  multi-cache-demo-net31-network:
