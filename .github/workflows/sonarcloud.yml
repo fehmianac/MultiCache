@@ -2,7 +2,7 @@ name: Build
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -42,8 +42,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          dotnet restore
-          dotnet test SlotGateway.sln --configuration Release --logger:"trx;LogFileName=testresult.xml" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover  /p:CoverletOutput="TestResults\opencover.xml"
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"fehmianac_doc-case" /o:"fehmianac" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="/**/**/TestResults/opencover.xml" /d:sonar.coverage.exclusions="**Tests*.cs"
-          dotnet build src/Slot.Gateway/Slot.Gateway.csproj
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"fehmianac_multi-cache" /o:"fehmianac" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
+          dotnet build
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
