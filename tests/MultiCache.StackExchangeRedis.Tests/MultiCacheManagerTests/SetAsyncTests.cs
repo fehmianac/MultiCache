@@ -7,10 +7,10 @@ using AutoFixture;
 using AutoFixture.Xunit2;
 using Moq;
 using MultiCache.Memory;
-using MultiCache.Redis;
+using MultiCache.StackExchangeRedis.Redis;
 using Xunit;
 
-namespace MultiCache.Tests.MultiCacheManagerTests
+namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
 {
     public class SetAsyncTests
     {

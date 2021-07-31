@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MultiCache.Abstractions;
 using MultiCache.Memory;
 
-namespace MultiCache.Redis
+namespace MultiCache.StackExchangeRedis.Redis
 {
     public class RedisMultiCacheManager : IMultiCacheManager
     {

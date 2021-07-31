@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+        <Title>MultiCache</Title>
+        <Authors>Fehmi Anaç</Authors>
+        <Copyright>Copyright © Fehmi Anaç</Copyright>
+        <Description>MultiCache library is a supporter for high-performance application as a cache manager system.</Description>
+        <Summary>MultiCache library is a supporter for high-performance application as a cache manager system.</Summary>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <PackageId>MultiCache.StackExchange.Redis</PackageId>
+        <PackageTags>Caching, Redis, StackExcange, Performance</PackageTags>
+        <!--        <PackageIcon>packageIcon.png</PackageIcon>-->
+        <!--        <PackageIconFullPath>$(MSBuildThisFileDirectory)packageIcon.png</PackageIconFullPath>-->
+        <PackageProjectUrl>https://github.com/fehmianac/multi-cache</PackageProjectUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <RepositoryUrl>https://github.com/fehmianac/multi-cache</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageVersion>0.0.1</PackageVersion>
+        <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+        <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.16"/>
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)'=='net5.0'">
+        <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MultiCache\MultiCache.csproj" />
+    </ItemGroup>
+
+
+</Project>

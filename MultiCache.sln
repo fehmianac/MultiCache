@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCache.Demo.Net50", "de
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCache.Demo.Net31", "demo\MultiCache.Demo.Net31\MultiCache.Demo.Net31.csproj", "{7B1A0A51-C11F-4FCB-B5A9-9B4E94819D01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCache.StackExchangeRedis", "src\MultiCache.StackExchangeRedis\MultiCache.StackExchangeRedis.csproj", "{749479B5-EF18-4035-9702-02838BA0F058}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiCache.StackExchangeRedis.Tests", "tests\MultiCache.StackExchangeRedis.Tests\MultiCache.StackExchangeRedis.Tests.csproj", "{660BF559-5F60-45AA-A8DC-C5BD84CF93EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +28,8 @@ Global
 		{07B72A1B-11FB-4765-851E-5E83AA4BDECA} = {BAAED0D8-F953-4347-B3D6-09564092C26C}
 		{6E52F0C2-A3C0-417D-96D3-1EF5C8B517F0} = {EC0DA659-51EC-4BE3-86EE-CC0B88AD72D2}
 		{7B1A0A51-C11F-4FCB-B5A9-9B4E94819D01} = {EC0DA659-51EC-4BE3-86EE-CC0B88AD72D2}
+		{749479B5-EF18-4035-9702-02838BA0F058} = {509ABABB-B096-491F-84E1-A7162925A500}
+		{660BF559-5F60-45AA-A8DC-C5BD84CF93EC} = {BAAED0D8-F953-4347-B3D6-09564092C26C}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F3384CEB-C664-42DC-857A-A1A8847C7329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -42,5 +48,13 @@ Global
 		{7B1A0A51-C11F-4FCB-B5A9-9B4E94819D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B1A0A51-C11F-4FCB-B5A9-9B4E94819D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B1A0A51-C11F-4FCB-B5A9-9B4E94819D01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{749479B5-EF18-4035-9702-02838BA0F058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{749479B5-EF18-4035-9702-02838BA0F058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{749479B5-EF18-4035-9702-02838BA0F058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{749479B5-EF18-4035-9702-02838BA0F058}.Release|Any CPU.Build.0 = Release|Any CPU
+		{660BF559-5F60-45AA-A8DC-C5BD84CF93EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{660BF559-5F60-45AA-A8DC-C5BD84CF93EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{660BF559-5F60-45AA-A8DC-C5BD84CF93EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{660BF559-5F60-45AA-A8DC-C5BD84CF93EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

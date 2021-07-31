@@ -2,9 +2,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 
-namespace MultiCache.Redis
+namespace MultiCache.StackExchangeRedis.Redis
 {
-    internal class RedisCacheInvalidationService : BackgroundService
+    public class RedisCacheInvalidationService : BackgroundService
     {
         private readonly IRedisClient _redisClient;
 
@@ -13,9 +13,9 @@ namespace MultiCache.Redis
             _redisClient = redisClient;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            await _redisClient.SubscribeCacheInvalidationChannel(stoppingToken);
+            await _redisClient.SubscribeCacheInvalidationChannel(cancellationToken);
         }
     }
 }

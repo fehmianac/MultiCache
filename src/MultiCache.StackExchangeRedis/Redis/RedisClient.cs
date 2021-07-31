@@ -5,7 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 
-namespace MultiCache.Redis
+namespace MultiCache.StackExchangeRedis.Redis
 {
    public class RedisClient : IRedisClient, IDisposable
     {

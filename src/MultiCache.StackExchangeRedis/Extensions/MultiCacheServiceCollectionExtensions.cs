@@ -2,9 +2,9 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using MultiCache.Abstractions;
 using MultiCache.Memory;
-using MultiCache.Redis;
+using MultiCache.StackExchangeRedis.Redis;
 
-namespace MultiCache.Extensions
+namespace MultiCache.StackExchangeRedis.Extensions
 {
     public static class MultiCacheServiceCollectionExtensions
     {

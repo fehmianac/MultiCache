@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Options;
 using StackExchange.Redis;
 
-namespace MultiCache.Redis
+namespace MultiCache.StackExchangeRedis.Redis
 {
     public class RedisClientOptions : IOptions<RedisClientOptions>
     {
