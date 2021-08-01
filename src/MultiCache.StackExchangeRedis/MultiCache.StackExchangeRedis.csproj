@@ -8,7 +8,7 @@
         <Description>MultiCache library is a supporter for high-performance application as a cache manager system.</Description>
         <Summary>MultiCache library is a supporter for high-performance application as a cache manager system.</Summary>
         <NeutralLanguage>en-US</NeutralLanguage>
-        <PackageId>MultiCache.StackExchange.Redis</PackageId>
+        <PackageId>MultiCache.StackExchangeRedis</PackageId>
         <PackageTags>Caching, Redis, StackExcange, Performance</PackageTags>
         <!--        <PackageIcon>packageIcon.png</PackageIcon>-->
         <!--        <PackageIconFullPath>$(MSBuildThisFileDirectory)packageIcon.png</PackageIconFullPath>-->
