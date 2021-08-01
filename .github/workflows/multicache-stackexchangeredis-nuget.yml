@@ -3,14 +3,10 @@ name: Nuget Package for nuget.org
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  pack:
-
+  multicache-stackexchangeredis-pack:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
