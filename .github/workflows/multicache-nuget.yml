@@ -1,8 +1,8 @@
 name: Nuget Package for nuget.org
 
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [published]
 jobs:
   multicache-pack:
     runs-on: ubuntu-latest
