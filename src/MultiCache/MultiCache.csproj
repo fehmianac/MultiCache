@@ -15,7 +15,7 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/fehmianac/multi-cache</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageVersion>1.0.1</PackageVersion>
+        <PackageVersion>1.0.2</PackageVersion>
         <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
     </PropertyGroup>
 
