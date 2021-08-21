@@ -15,7 +15,7 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/fehmianac/multi-cache</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageVersion>1.0.0</PackageVersion>
+        <PackageVersion>1.0.2</PackageVersion>
         <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
     </PropertyGroup>
 
@@ -28,6 +28,7 @@
         <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     </ItemGroup>
+
     <ItemGroup>
       <PackageReference Include="MultiCache" Version="1.0.2" />
     </ItemGroup>
