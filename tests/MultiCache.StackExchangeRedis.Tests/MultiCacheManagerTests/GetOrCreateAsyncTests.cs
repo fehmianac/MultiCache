@@ -43,9 +43,9 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             _memoryClientMock.Setup(q => q.TryGetValue(cacheKey, out response)).Returns(true);
 
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            var cachedResult = await multiCacheManager.GetOrCreateAsync(cacheKey, async () => await Task.FromResult(Guid.NewGuid().ToString()), TimeSpan.Zero);
-
+            var (cachedResult,fromCache) = await multiCacheManager.GetOrCreateAsync(cacheKey, async () => await Task.FromResult(Guid.NewGuid().ToString()), TimeSpan.Zero);
             Assert.Equal(response, cachedResult);
+            Assert.True(fromCache);
             _memoryClientMock.Verify(q => q.TryGetValue(cacheKey, out response), Times.Once);
         }
 
@@ -62,9 +62,10 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             }
 
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            var cachedResult = await multiCacheManager.GetOrCreateAsync(cacheKey, Func, TimeSpan.Zero);
+            var (cachedResult,fromCache) = await multiCacheManager.GetOrCreateAsync(cacheKey, Func, TimeSpan.Zero);
 
             Assert.Null(cachedResult);
+            Assert.False(fromCache);
             _memoryClientMock.Verify(q => q.TryGetValue(cacheKey, out response), Times.Once);
             _redisClientMock.Verify(q => q.GetWithExpiryAsync(cacheKey, It.IsAny<CancellationToken>()), Times.Once);
         }
@@ -88,9 +89,10 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             }
 
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            var cachedResult = await multiCacheManager.GetOrCreateAsync(cacheKey, Func, timeSpan);
+            var (cachedResult,fromCache)  = await multiCacheManager.GetOrCreateAsync(cacheKey, Func, timeSpan);
 
             Assert.Equal(response, cachedResult);
+            Assert.True(fromCache);
             _memoryClientMock.Verify(q => q.TryGetValue(cacheKey, out response), Times.Once);
             _memoryClientMock.Verify(q => q.Set(cacheKey, response, timeSpan), Times.Once);
             _redisClientMock.Verify(q => q.GetWithExpiryAsync(cacheKey, It.IsAny<CancellationToken>()), Times.Once);

@@ -18,20 +18,20 @@ namespace MultiCache.StackExchangeRedis.Redis
             _memoryCache = memoryCache;
         }
 
-        public async Task<T> GetAsync<T>(string key, CancellationToken cancellationToken = default)
+        public async Task<(T, bool)> GetAsync<T>(string key, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
             var isExistsInMemory = _memoryCache.TryGetValue(key, out T response);
             if (isExistsInMemory)
             {
-                return response;
+                return (response, true);
             }
 
             var (value, expiry) = await _redisClient.GetWithExpiryAsync(key, cancellationToken).ConfigureAwait(false);
             if (value == null)
             {
-                return default;
+                return (default, false);
             }
 
             response = JsonSerializer.Deserialize<T>(value);
@@ -44,7 +44,7 @@ namespace MultiCache.StackExchangeRedis.Redis
                 _memoryCache.Set(key, response);
             }
 
-            return response;
+            return (response, true);
         }
 
         public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
@@ -63,29 +63,29 @@ namespace MultiCache.StackExchangeRedis.Redis
             await _redisClient.SetAsync(key, JsonSerializer.SerializeToUtf8Bytes(value), expiry, cancellationToken).ConfigureAwait(false);
         }
 
-        public async Task<T> GetOrCreateAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
+        public async Task<(T, bool)> GetOrCreateAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiry = null, CancellationToken cancellationToken = default)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            var cacheResult = await GetAsync<T>(key, cancellationToken);
+            var (cacheResult, fromCache) = await GetAsync<T>(key, cancellationToken);
             if (cacheResult != null)
-                return cacheResult;
+                return (cacheResult, fromCache);
 
             var result = await factory();
 
             if (result == null)
             {
-                return default(T);
+                return (default(T), false);
             }
 
             await SetAsync(key, result, expiry, cancellationToken);
-            return result;
+            return (result, true);
         }
 
         public async Task RemoveAsync(string key, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            
+
             await _redisClient.RemoveAsync(key, cancellationToken);
         }
     }

@@ -29,6 +29,6 @@
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
     </ItemGroup>
     <ItemGroup>
-      <PackageReference Include="MultiCache" Version="1.0.1" />
+      <PackageReference Include="MultiCache" Version="1.0.2" />
     </ItemGroup>
 </Project>

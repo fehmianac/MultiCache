@@ -44,9 +44,10 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             _memoryClientMock.Setup(q => q.TryGetValue(cacheKey, out response)).Returns(true);
 
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            var cachedResult = await multiCacheManager.GetAsync<string>(cacheKey);
+            var (cachedResult, fromCache) = await multiCacheManager.GetAsync<string>(cacheKey);
 
             Assert.Equal(response, cachedResult);
+            Assert.True(fromCache);
             _memoryClientMock.Verify(q => q.TryGetValue(cacheKey, out response), Times.Once);
         }
 
@@ -58,10 +59,10 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             _redisClientMock.Setup(q => q.GetWithExpiryAsync(cacheKey, default)).ReturnsAsync(() => (null, TimeSpan.Zero));
 
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            var cachedResult = await multiCacheManager.GetAsync<string>(cacheKey);
+            var (cachedResult, fromCache) = await multiCacheManager.GetAsync<string>(cacheKey);
 
             Assert.Equal(default, cachedResult);
-
+            Assert.False(fromCache);
             _memoryClientMock.Verify(q => q.TryGetValue(cacheKey, out response), Times.Once);
             _redisClientMock.Verify(q => q.GetWithExpiryAsync(cacheKey, It.IsAny<CancellationToken>()), Times.Once);
         }
@@ -77,9 +78,10 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             _redisClientMock.Setup(q => q.GetWithExpiryAsync(cacheKey, default)).ReturnsAsync(() => (JsonSerializer.SerializeToUtf8Bytes(response), redisTtl));
 
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            var cachedResult = await multiCacheManager.GetAsync<string>(cacheKey);
+            var (cachedResult, fromCache) = await multiCacheManager.GetAsync<string>(cacheKey);
 
             Assert.Equal(response, cachedResult);
+            Assert.True(fromCache);
             _memoryClientMock.Verify(q => q.TryGetValue(cacheKey, out response), Times.Once);
             _memoryClientMock.Verify(q => q.Set(cacheKey, response, redisTtl), Times.Once);
             _redisClientMock.Verify(q => q.GetWithExpiryAsync(cacheKey, It.IsAny<CancellationToken>()), Times.Once);
@@ -95,9 +97,10 @@ namespace MultiCache.StackExchangeRedis.MultiCacheManagerTests
             _redisClientMock.Setup(q => q.GetWithExpiryAsync(cacheKey, default)).ReturnsAsync(() => (JsonSerializer.SerializeToUtf8Bytes(response), null));
 
             var multiCacheManager = _autoMock.Create<RedisMultiCacheManager>();
-            var cachedResult = await multiCacheManager.GetAsync<string>(cacheKey);
+            var (cachedResult, fromCache) = await multiCacheManager.GetAsync<string>(cacheKey);
 
             Assert.Equal(response, cachedResult);
+            Assert.True(fromCache);
             _memoryClientMock.Verify(q => q.TryGetValue(cacheKey, out response), Times.Once);
             _memoryClientMock.Verify(q => q.Set(cacheKey, response), Times.Once);
             _redisClientMock.Verify(q => q.GetWithExpiryAsync(cacheKey, It.IsAny<CancellationToken>()), Times.Once);
