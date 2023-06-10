@@ -44,7 +44,7 @@ namespace MultiCache.StackExchangeRedis.Redis
                 _memoryCache.Set(key, response);
             }
 
-            return (response, true);
+            return (response, false);
         }
 
         public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null, CancellationToken cancellationToken = default)

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace MultiCache.StackExchangeRedis.Redis
 {
-    public class RedisCacheInvalidationService : BackgroundService
+    public class RedisCacheInvalidationService : IHostedService
     {
         private readonly IRedisClient _redisClient;
 
@@ -12,10 +12,14 @@ namespace MultiCache.StackExchangeRedis.Redis
         {
             _redisClient = redisClient;
         }
-
-        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
             await _redisClient.SubscribeCacheInvalidationChannel(cancellationToken);
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken)
+        {
+            return Task.CompletedTask;
         }
     }
 }

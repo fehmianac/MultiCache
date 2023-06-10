@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
+        
         <Title>MultiCache</Title>
         <Authors>Fehmi Anaç</Authors>
         <Copyright>Copyright © Fehmi Anaç</Copyright>
@@ -15,21 +15,32 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/fehmianac/multi-cache</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageVersion>1.0.2</PackageVersion>
+        <PackageVersion>2.0.0</PackageVersion>
         <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
-        <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.16" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='net5.0'">
-        <PackageReference Include="StackExchange.Redis" Version="2.2.62" />
-        <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
       <PackageReference Include="MultiCache" Version="1.0.2" />
+      <PackageReference Include="StackExchange.Redis.Extensions.AspNetCore" Version="9.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.Extensions.Caching.Abstractions">
+        <HintPath>..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\6.0.11\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MultiCache\MultiCache.csproj" />
     </ItemGroup>
 </Project>

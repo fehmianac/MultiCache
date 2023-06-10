@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
         <Title>MultiCache</Title>
         <Authors>Fehmi Anaç</Authors>
         <Copyright>Copyright © Fehmi Anaç</Copyright>
@@ -15,19 +14,24 @@
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <RepositoryUrl>https://github.com/fehmianac/multi-cache</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageVersion>1.0.2</PackageVersion>
+        <PackageVersion>2.0.0</PackageVersion>
         <OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
+        <TargetFramework>netstandard2.1</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.16"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.16"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.16"/>
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.16" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.16" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.16" />
     </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)'=='net5.0'">
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0"/>
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="7.0.0" />
     </ItemGroup>
 </Project>
